@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
+import routes from "../../router/routes";
 
 export default function Navbar() {
   const [slug, setSlug] = useState();
@@ -21,7 +22,9 @@ export default function Navbar() {
     <>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Rehacktor</a>
+          <Link className="btn btn-ghost text-3xl" to={routes.home}>
+            Rehacktor
+          </Link>
         </div>
         <div className="flex gap-2">
           <input

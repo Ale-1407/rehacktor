@@ -7,3 +7,13 @@ export const getAllGamesLoader = async () => {
   const json = await promise.json();
   return json.results;
 };
+
+export const getSearchedGames = async ({ params }) => {
+  const promise = await fetch(
+    `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&search=${
+      params.slug
+    }`
+  );
+  const json = await promise.json();
+  return json.results;
+};

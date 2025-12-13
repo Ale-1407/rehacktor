@@ -1,4 +1,22 @@
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router";
+
 export default function Navbar() {
+  const [slug, setSlug] = useState();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setSlug(e.target.value);
+  };
+
+  //all'enter dell'input ottengo lo stesso risultato
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && slug.trim()) {
+      navigate(`/search/${slug}`);
+    }
+  };
+
   return (
     <>
       <div className="navbar bg-base-100 shadow-sm">
@@ -7,10 +25,15 @@ export default function Navbar() {
         </div>
         <div className="flex gap-2">
           <input
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
             type="text"
             placeholder="Search"
             className="input input-bordered w-24 md:w-auto"
           />
+          <Link className="btn btn-circle" to={`/search/${slug}`}>
+            <FaSearch />
+          </Link>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

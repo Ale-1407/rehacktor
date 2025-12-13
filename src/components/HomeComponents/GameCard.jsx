@@ -1,15 +1,18 @@
 export default function GameCard({ game }) {
   return (
     <>
-      <div className="hover-3d h-[200px] relative">
+      <div className="hover-3d relative">
         {/* content */}
-        <figure className="max-w-100 rounded-2xl">
+        <figure className="max-w-100 rounded-2xl sm:aspect-4/5 lg:aspect-video">
           <img
             src={`${game.background_image}`}
             alt=""
-            className="w-full h-full"
+            className="w-full h-full object-cover"
           />
-          <p className="absolute bottom-3 w-full text-center font-bold">
+          <p
+            className="absolute bottom-0 w-full text-center bg-linear-to-t from-black/70  to-transparent
+          p-3 text-white font-bold"
+          >
             {game.name}
           </p>
         </figure>

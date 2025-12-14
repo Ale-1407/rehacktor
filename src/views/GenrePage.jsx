@@ -6,7 +6,7 @@ export default function GenrePage() {
   const { slug } = useParams();
   return (
     <>
-      <h1>Filtered by genre: {slug}</h1>
+      <h1 className="text-center text-3xl mt-10">Filtered by genre: {slug}</h1>
       <GameList>
         {games.map((game) => {
           return <GameList.Card key={game.id} game={game} />;

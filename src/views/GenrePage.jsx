@@ -1,11 +1,12 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 import GameList from "../components/HomeComponents/GameList";
 
-export default function Homepage() {
+export default function GenrePage() {
   const games = useLoaderData();
-
+  const { slug } = useParams();
   return (
     <>
+      <h1>Filtered by genre: {slug}</h1>
       <GameList>
         {games.map((game) => {
           return <GameList.Card key={game.id} game={game} />;

@@ -3,7 +3,7 @@ export default function GameCard({ game }) {
     <>
       <div className="hover-3d relative">
         {/* content */}
-        <figure className="max-w-100 rounded-2xl sm:aspect-4/5 lg:aspect-video">
+        <figure className="relative overflow-hidden w-full rounded-2xl aspect-4/5 lg:aspect-video">
           <img
             src={`${game.background_image}`}
             alt=""

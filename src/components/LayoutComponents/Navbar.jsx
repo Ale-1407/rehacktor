@@ -20,23 +20,36 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-1">
+      <div className="navbar grid grid-cols-3 items-center bg-base-100 shadow-sm">
+        <div className="justify-self-start">
           <Link className="btn btn-ghost text-3xl" to={routes.home}>
             Rehacktor
           </Link>
         </div>
-        <div className="flex gap-2">
+
+        <div className="justify-self-center flex gap-3">
           <input
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
+            className="input input-bordered rounded-full w-24 md:w-auto"
           />
           <Link className="btn btn-circle" to={`/search/${slug}`}>
             <FaSearch />
           </Link>
+        </div>
+
+        <div className="justify-self-end flex gap-3">
+          <div className="flex items-center gap-2">
+            <Link className="" to={routes.register}>
+              Register
+            </Link>
+            <Link className="" to={routes.login}>
+              Login
+            </Link>
+          </div>
+
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

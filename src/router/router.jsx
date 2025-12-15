@@ -10,6 +10,9 @@ import {
 } from "./loaders";
 import SearchPage from "../views/SearchPage";
 import GenrePage from "../views/GenrePage";
+import AutheniticationLayout from "../components/layouts/AuthenticationLayout";
+import RegisterPage from "../views/auth/RegisterPage";
+import LoginPage from "../views/auth/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,20 @@ const router = createBrowserRouter([
         path: routes.genre,
         Component: GenrePage,
         loader: getFilteredGenreGames,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    Component: AutheniticationLayout,
+    children: [
+      {
+        path: routes.register,
+        Component: RegisterPage,
+      },
+      {
+        path: routes.login,
+        Component: LoginPage,
       },
     ],
   },

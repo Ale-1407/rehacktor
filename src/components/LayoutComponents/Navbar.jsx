@@ -21,6 +21,7 @@ export default function Navbar() {
   };
 
   const { user, signOut } = useContext(UserContext);
+  console.log("user in navbar", user);
 
   const handleLogout = async () => {
     await signOut();
@@ -62,13 +63,13 @@ export default function Navbar() {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div className=" flex items-center w-10 rounded-full">
                 {(user && (
                   <img
                     alt="Tailwind CSS Navbar component"
                     src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                   />
-                )) || <FaArrowRightToBracket className="text-3xl" />}
+                )) || <FaArrowRightToBracket className="text-2xl" />}
               </div>
             </div>
             <ul
@@ -77,7 +78,7 @@ export default function Navbar() {
             >
               <li>
                 <a className="justify-between">
-                  Profile
+                  <Link to={routes.profile}>Profile</Link>
                   <span className="badge">New</span>
                 </a>
               </li>

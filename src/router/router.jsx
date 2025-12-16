@@ -6,6 +6,7 @@ import {
   getAllGamesLoader,
   getAllGenres,
   getFilteredGenreGames,
+  getGameDetails,
   getSearchedGames,
 } from "./loaders";
 import SearchPage from "../views/SearchPage";
@@ -15,6 +16,7 @@ import RegisterPage from "../views/auth/RegisterPage";
 import LoginPage from "../views/auth/LoginPage";
 import ProfilePage from "../views/auth/ProfilePage";
 import ProfileSettingsPage from "../views/auth/ProfileSettingsPage";
+import DetailPage from "../views/DetailPage";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,11 @@ const router = createBrowserRouter([
         Component: ProfileSettingsPage,
       },
     ],
+  },
+  {
+    path: routes.detail,
+    Component: DetailPage,
+    loader: getGameDetails,
   },
 ]);
 

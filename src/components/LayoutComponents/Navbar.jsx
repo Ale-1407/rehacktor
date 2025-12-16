@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import routes from "../../router/routes";
+import { UserContext } from "../../context/UserContext";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 export default function Navbar() {
   const [slug, setSlug] = useState();
@@ -16,6 +18,13 @@ export default function Navbar() {
     if (e.key === "Enter" && slug.trim()) {
       navigate(`/search/${slug}`);
     }
+  };
+
+  const { user, signOut } = useContext(UserContext);
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate("/");
   };
 
   return (
@@ -41,15 +50,12 @@ export default function Navbar() {
         </div>
 
         <div className="justify-self-end flex gap-3">
-          <div className="flex items-center gap-2">
-            <Link className="" to={routes.register}>
-              Register
-            </Link>
-            <Link className="" to={routes.login}>
-              Login
-            </Link>
-          </div>
-
+          {!user && (
+            <div className="flex items-center gap-2">
+              <Link to={routes.register}>Register</Link>
+              <Link to={routes.login}>Login</Link>
+            </div>
+          )}
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -57,10 +63,12 @@ export default function Navbar() {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+                {(user && (
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  />
+                )) || <FaArrowRightToBracket className="text-3xl" />}
               </div>
             </div>
             <ul
@@ -76,7 +84,7 @@ export default function Navbar() {
               <li>
                 <a>Settings</a>
               </li>
-              <li>
+              <li onClick={handleLogout}>
                 <a>Logout</a>
               </li>
             </ul>

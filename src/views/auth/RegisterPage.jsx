@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import supabase from "../../database/supabase";
+/* import supabase from "../../database/supabase";
+ */ import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export default function RegisterPage() {
   const {
@@ -9,12 +11,14 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm();
 
+  const { signUp } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const onSubmit = async (user_data) => {
     console.log("form data:", user_data);
 
-    let { data, error } = await supabase.auth.signUp({
+    await signUp({
       email: user_data.email,
       password: user_data.password,
       options: {

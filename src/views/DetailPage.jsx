@@ -1,11 +1,14 @@
 import { FaCircleArrowLeft } from "react-icons/fa6";
 import { useLoaderData, useNavigate } from "react-router";
 import Header from "../components/DetailComponents/Header";
+import BodySection from "../components/DetailComponents/BodySection";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 export default function DetailPage() {
   const game = useLoaderData();
   const navigate = useNavigate();
-  console.log(game);
+  const { profile } = useContext(UserContext);
 
   return (
     <>
@@ -20,6 +23,7 @@ export default function DetailPage() {
           onClick={() => navigate(-1)}
         />
         <Header game={game} />
+        {profile && <BodySection game={game} profile_id={profile.id} />}
       </main>
     </>
   );

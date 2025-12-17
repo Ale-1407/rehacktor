@@ -4,10 +4,12 @@ import profilePic from "../../assets/profilePic.png";
 import routes from "../../router/routes";
 import { Link } from "react-router";
 import supabase from "../../database/supabase";
+import { FaHeart } from "react-icons/fa";
 
 export default function ProfilePage() {
   const { user, profile } = useContext(UserContext);
   const [avatarUrl, setAvatarUrl] = useState();
+  const [userFavourites, setUserFavourites] = useState();
 
   const download_avatar = async () => {
     if (profile) {
@@ -19,8 +21,19 @@ export default function ProfilePage() {
     }
   };
 
+  const get_favourites = async () => {
+    if (profile) {
+      let { data: favourites, error } = await supabase
+        .from("favourites")
+        .select("*")
+        .eq("profile_id", profile.id);
+      setUserFavourites(favourites);
+    }
+  };
+
   useEffect(() => {
     download_avatar();
+    get_favourites();
   }, [profile]);
 
   return (
@@ -50,6 +63,24 @@ export default function ProfilePage() {
                   Settings
                 </Link>
               </article>
+            </section>
+
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10 px-6 lg:px-16">
+              {userFavourites &&
+                userFavourites.map((game) => (
+                  <div
+                    key={game.id}
+                    className="relative rounded-xl bg-linear-to-br from-base-200 to-base-300 p-6 shadow-md hover:scale-[1.02] transition"
+                  >
+                    <span className="absolute top-3 right-3 text-red-500 text-xl">
+                      <FaHeart />
+                    </span>
+
+                    <h2 className="text-lg font-bold text-white">
+                      {game.game_name}
+                    </h2>
+                  </div>
+                ))}
             </section>
           </>
         )}

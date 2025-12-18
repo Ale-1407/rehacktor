@@ -37,7 +37,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="justify-self-center flex gap-3">
+        <div className="justify-self-center hidden md:flex gap-3">
           <input
             onChange={handleChange}
             onKeyDown={handleKeyDown}
@@ -50,7 +50,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="justify-self-end flex gap-3">
+        <div className="justify-self-end flex gap-3 col-start-3">
           {!user && (
             <div className="flex items-center gap-2">
               <Link to={routes.register}>Register</Link>
@@ -61,21 +61,35 @@ export default function Navbar() {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost btn-circle"
             >
-              <div className=" flex items-center w-10 rounded-full">
-                {(user && (
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
-                )) || <FaArrowRightToBracket className="text-2xl" />}
-              </div>
+              {user ? (
+                <div className="avatar">
+                  <div className="w-8 rounded-full">
+                    <img
+                      alt="User avatar"
+                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <FaArrowRightToBracket className="text-2xl" />
+              )}
             </div>
             <ul
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
+              {/* SEARCH MOBILE */}
+              <li className="md:hidden">
+                <input
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                  type="text"
+                  placeholder="Search"
+                  className="input input-bordered w-full"
+                />
+              </li>
               <li>
                 <a className="justify-between">
                   <Link to={routes.profile}>Profile</Link>

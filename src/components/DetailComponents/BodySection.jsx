@@ -72,8 +72,8 @@ export default function BodySection({ game, profile_id }) {
 
   return (
     <>
-      <section className="grid grid-cols-6 mt-10 px-10">
-        <div className="col-span-5 flex flex-col items-center gap-4">
+      <section className="flex justify-center mt-10 px-4">
+        <div className="w-full max-w-3xl flex flex-col items-center gap-4">
           <p className="text-white text-xl mb-2">Reviews</p>
 
           <textarea

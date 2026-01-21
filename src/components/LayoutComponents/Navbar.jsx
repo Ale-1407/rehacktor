@@ -96,9 +96,11 @@ export default function Navbar() {
                   <span className="badge">New</span>
                 </a>
               </li>
-              <Link to={routes.profile_settings}>
-                <a>Settings</a>
-              </Link>
+              <li>
+                <Link to={routes.profile_settings}>
+                  <a>Settings</a>
+                </Link>
+              </li>
               <li onClick={handleLogout}>
                 <a>Logout</a>
               </li>

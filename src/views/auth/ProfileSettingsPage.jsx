@@ -50,9 +50,13 @@ export default function ProfileSettingsPage() {
 
   return (
     <>
-      <div className="flex justify-center items-center min-h-[calc(100vh-4rem)]">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-md border p-6">
+      <div className="flex flex-col lg:flex-row justify-center items-start gap-8 px-4 py-10 min-h-[calc(100vh-4rem)] w-full">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-md mx-auto"
+        >
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-6 shadow-md">
+            <h2 className="text-lg font-bold mb-2">Personal info</h2>
             <label className="label">Name</label>
             <input
               type="text"
@@ -94,21 +98,38 @@ export default function ProfileSettingsPage() {
               <p className="text-red-500">{errors.username.message}</p>
             )}
 
-            <button type="submit" className="btn btn-neutral mt-4">
+            <button
+              type="submit"
+              className="btn btn-neutral mt-4 w-full sm:w-auto"
+            >
               Edit
             </button>
           </fieldset>
         </form>
 
-        <form className="p-10 w-1/2" onSubmit={handleAvatarSubmit}>
-          <input
-            type="file"
-            className="file-input file-input-lg w-full mb-5"
-            onChange={handleChange}
-          />
-          <button className="btn btn-neutral p-5">Change Avatar</button>
+        <form
+          className="w-full max-w-md mx-auto p-0"
+          onSubmit={handleAvatarSubmit}
+        >
+          <div className="bg-base-200 border border-base-300 rounded-box p-6 shadow-md">
+            <h2 className="text-lg font-bold mb-2">Avatar</h2>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full mb-5"
+              onChange={handleChange}
+            />
+            <button className="btn btn-neutral w-full sm:w-auto">
+              Change Avatar
+            </button>
+            {preview && (
+              <img
+                src={preview}
+                alt="avatar preview"
+                className="mt-5 w-40 h-40 rounded-full object-cover mx-auto ring ring-offset-purple-600 ring-offset-2"
+              />
+            )}
+          </div>
         </form>
-        <img src={preview} alt="" className="w-50" />
       </div>
     </>
   );
